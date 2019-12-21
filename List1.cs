@@ -6,7 +6,7 @@ namespace BrokenFour
 {
     class List1
     {
-        public void ListOfNums(int total, int brokenNum)
+        public void ListOfNums(int total, char brokenNum)
         {
             //List of strings that will be returned to user
             List<string> options = new List<string>();
@@ -35,28 +35,25 @@ namespace BrokenFour
                     }
                 }
             }
-            /*
-            //loop to remove options containing broken number
-            try
+
+
+
+            //for loop
+            for (int i = 0; i <= options.Count; i++)
             {
-                foreach (string i in options)
+                var option = options[i];
+                for (int j = 0; j <= option.Length; i++)
                 {
-                    if (i.Contains(brokenNum.ToString()))
+                    if (option[j] == brokenNum)
                     {
-                        options.Remove(i);
+                        finalList.Remove(finalList[i]);
                     }
-
-
                 }
-            }catch (System.InvalidOperationException)
-            {
-                Console.WriteLine("System.InvalidOperationException");
-                throw;
             }
-            */
-
-            //print final list of options that does not contain broken number
-            foreach (string option in options)
+            
+            
+            //print list to console
+            foreach (string option in finalList)
             {
                 Console.WriteLine(option);
             }
