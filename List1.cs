@@ -6,9 +6,9 @@ namespace BrokenFour
 {
     class List1
     {
-        public void ListOfNums(int total, int brokenNum)
+        public void ListOfNums(int total, char brokenNum)
         {
-            //List of strings that will be returned to user
+            //List of strings 
             List<string> options = new List<string>();
             
             //decloration of list one and two
@@ -35,34 +35,70 @@ namespace BrokenFour
                     }
                 }
             }
-            /*
-            //loop to remove options containing broken number
-            try
+
+            //creats a list without the broken number present
+            List<string> listThree = new List<string>();
+            foreach(string option in options)
             {
-                foreach (string i in options)
+                if (FilterOfChar(option, brokenNum) == true)
                 {
-                    if (i.Contains(brokenNum.ToString()))
-                    {
-                        options.Remove(i);
-                    }
-
-
+                    listThree.Add(option);
                 }
-            }catch (System.InvalidOperationException)
-            {
-                Console.WriteLine("System.InvalidOperationException");
-                throw;
+                else
+                {
+                    continue;
+                }
             }
-            */
+            //Remove first and last option on list
+            listThree.RemoveAt(0);
+            listThree.Reverse();
+            listThree.RemoveAt(0);
+            listThree.Reverse();
 
-            //print final list of options that does not contain broken number
-            foreach (string option in options)
+            //acount for number of options removed
+            int NumberOfOptions = listThree.Count / 2; 
+            //to remove repeat options from list
+            listThree.RemoveRange(0, NumberOfOptions);
+
+            //prints listThree
+            foreach(string option in listThree)
             {
                 Console.WriteLine(option);
             }
+            
+
+           
 
         }
-        
-        
+        //-------------------------------------------------------------------------------------------------------------------------------------------------
+        //function intended to filter each string and remove those with brokenNum creating listThree
+        public static bool FilterOfChar(string sentence, char brokenNumber)
+        {
+            bool is_option = true;
+            foreach (char i in sentence)
+            {
+                if (i == brokenNumber)
+                {
+                    is_option = false;
+                    break;
+                }
+                else
+                {
+                    is_option = true;
+                    continue;
+                }
+            }
+
+            return is_option;
+
+
+        }
+
+
+
+
     }
 }
+
+   
+
